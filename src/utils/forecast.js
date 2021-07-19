@@ -9,13 +9,13 @@ const forecast =(latitude, longitude, callback)=>{
     propertiesObject.query = latitude+','+longitude;
     // propertiesObject.query =[latitude, longitude];
     request({url:url, qs:propertiesObject, json:true}, (error, {body})=>{
-        
+       
         if(error){
             callback('unable to connect to weather api!!');
         }else if(body.error){
             callback('Unable to find location!!');
         }else{
-            callback(undefined, body.current.weather_descriptions[0] + ". It is currently " + body.current.temperature + " degress out.")
+            callback(undefined, body.current.weather_descriptions[0] + ". It is currently " + body.current.temperature + " degress out. And it feels like "+ body.current.feelslike)
         }
       
     });
